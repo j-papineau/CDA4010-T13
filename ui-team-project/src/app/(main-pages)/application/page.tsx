@@ -7,6 +7,7 @@ import Skills from '@/app/components/ApplicationPages/Skills'
 import TC from '@/app/components/ApplicationPages/TC'
 import WorkExp from '@/app/components/ApplicationPages/WorkExp'
 import AppHeader from '@/app/components/Header/AppHeader'
+import { MasterData } from '@/app/util/types'
 import { Alert, AlertDescription, AlertIcon, AlertTitle, Progress } from '@chakra-ui/react'
 import React, { useState } from 'react'
 
@@ -20,8 +21,68 @@ export interface AlertInfo {
   status: "success" | "error" | "warning";
 }
 
+const blankData: MasterData = {
+  personalInfo: {
+    name: {
+      title: "",
+      first: "",
+      mi: "",
+      last: ""
+    },
+    email: "",
+    phoneMobile: "",
+    phoneHome: "",
+    address: {
+      address: "",
+      city: "",
+      zip: "",
+      state: ""
+    }
+  },
+  militaryInfo: {
+    didServe: false,
+    info: ""
+  },
+  jobReqs: {
+    availability: ["none", "none", "none", "none", "none", "none", "none",],
+    oldEnough: false,
+    license: false,
+    liftTwenty: false,
+    trafficIncident: false,
+    dui: false,
+  },
+  education: [
+    {
+      name: "",
+      degree: "",
+      major: "",
+      graduation: "",
+      completed: false
+    }
+  ],
+  work: [ 
+    {
+      company: "",
+      start: new Date(),
+      end: new Date(),
+      position: "",
+      duties: ""
+    }
+  ],
+  skills: [
+    {
+      name: "",
+      level: "beginner"
+    }
+  ],
+  tcAccepted: false
+}
+
+
+
 const Application = (props: Props) => {
 
+  const [appData, setAppData] = useState<MasterData>(blankData);
   const [progress, setProgress] = useState(1);
   //page array counted 0 - ...
   const [currentPage, setCurrentPage] = useState(0);
