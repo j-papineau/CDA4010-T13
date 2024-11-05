@@ -9,7 +9,7 @@ type Props = {
 const ModalTitle = (props: Props) => {
   return (
     <div className='flex flex-col w-full items-center space-y-2'>
-        <p className='italic text-xl tracking-wider'>{props.title}</p>
+        <p className='italic text-2xl font-semibold tracking-wider'>{props.title}</p>
         <Divider colorScheme='blue'/>
     </div>
   )

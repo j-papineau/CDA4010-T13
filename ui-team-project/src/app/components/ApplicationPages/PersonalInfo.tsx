@@ -9,16 +9,18 @@ import ModalTitle from './ModalTitle';
 
 type Props = {
     setAlertInfo: (info: AlertInfo) => void;
+    goNextPage: () => void;
 }
 
 const PersonalInfo = (props: Props) => {
 
     const goPrev = () => {
-
+        
     }
 
     const goNext = () => {
-
+        //validate info
+        props.goNextPage()
     }
 
     const [title, setTitle] = useState("");
@@ -27,7 +29,7 @@ const PersonalInfo = (props: Props) => {
     const [last, setLast] = useState("")
 
     const [pDisabled, setPDisabled] = useState(true);
-    const [nDisabled, setNDisabled] = useState(true);
+    const [nDisabled, setNDisabled] = useState(false);
 
 
 
@@ -76,15 +78,15 @@ const PersonalInfo = (props: Props) => {
                 </div>
             </div>
             <p className='font-semibold text-lg'>Email</p>
-            <Input placeholder='tony@sopranowastemanagement.com'/>
+            <Input type='email' placeholder='tony@sopranowastemanagement.com'/>
             <div className='flex flex-row space-x-4'>
                 <div className='flex flex-col'>
                     <p className='font-semibold text-lg'>Phone Number (Mobile)</p>
-                    <Input placeholder='(123) 123-1234'/>
+                    <Input type='tel' placeholder='(123) 123-1234'/>
                 </div>
                 <div className='flex flex-col'>
                     <p className='font-semibold text-lg'>Phone Number (Home)</p>
-                    <Input placeholder='(123) 123-1234'/>
+                    <Input type='tel' placeholder='(123) 123-1234'/>
                 </div>
             </div>
         </div>
