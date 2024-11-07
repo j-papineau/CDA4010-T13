@@ -1,6 +1,7 @@
 "use client"
 import { AlertInfo } from '@/app/(main-pages)/application/page'
-import { Button, Input, Select } from '@chakra-ui/react';
+// import { Button, Input, Select } from '@chakra-ui/react';
+import { Button, Input, Select } from '@mui/material';
 import React, { useState } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import PrevNextBtn from './PrevNextBtn';
@@ -71,9 +72,9 @@ const PersonalInfo = (props: Props) => {
                     <p className='text-xs'>ZIP</p>
                 </div>
                 <div className='flex flex-col items-center'>
-                    <Select>
+                    {/* <Select>
                         <option value='NJ'>New Jersey</option>
-                    </Select>
+                    </Select> */}
                     <p className='text-xs'>State</p>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 "use client";
-import { Button } from '@chakra-ui/react';
+import { Button } from '@mui/material';
 import React from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -13,11 +13,11 @@ type Props = {
 const PrevNextBtn = (props: Props) => {
   return (
     <div className='flex flex-row justify-between p-4'>
-    <Button disabled={props.prevDisabled} onClick={props.goPrev} colorScheme='blue' width={200}>
+    <Button disabled={props.prevDisabled} onClick={props.goPrev}>
         <FaChevronLeft/>
         <p>Previous</p>
     </Button>
-    <Button disabled={props.nextDisabled} onClick={props.goNext} colorScheme='blue' width={200}>
+    <Button disabled={props.nextDisabled} onClick={props.goNext}>
         <p>Next</p>
         <FaChevronRight/>
     </Button>
