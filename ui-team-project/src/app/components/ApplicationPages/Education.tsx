@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PrevNextBtn from './PrevNextBtn';
 import ModalTitle from './ModalTitle';
 import EducationItem from '../input/EducationItem';
-import { Button } from '@chakra-ui/react';
+import { Button } from '@mui/material';
 import { FaPlus } from 'react-icons/fa';
 
 type Props = {
@@ -64,7 +64,7 @@ const Education = (props: Props) => {
             <EducationItem updateFunc={updateItem}/>
           </div>
         ))}
-        <Button onClick={addItem} colorScheme='blue' width={220}>
+        <Button onClick={addItem}>
           <div className='flex flex-row space-x-2 items-center'>
             <FaPlus/>
             <p>Add Another</p>

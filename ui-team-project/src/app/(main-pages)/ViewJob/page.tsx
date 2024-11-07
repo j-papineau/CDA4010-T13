@@ -3,7 +3,7 @@ import ButtonTest from '@/app/components/Header/ButtonTest'
 import Header from '@/app/components/Header/Header'
 import React from 'react'
 import Image from 'next/image'
-import { Button } from '@chakra-ui/react'
+import { Button } from '@mui/material'
 import { useRouter } from 'next/navigation'
 
 type Props = {}
@@ -41,7 +41,7 @@ const ViewJob = (props: Props) => {
         Fugiat commodi eum facilis! Minus, dolorum aliquid natus mollitia quam blanditiis veniam ex ipsam voluptatum doloribus soluta. Eum illum iure pariatur. Accusantium illo dolorum nam vero voluptatem id porro doloremque.
         Architecto incidunt laudantium mollitia, blanditiis possimus porro, perferendis, eaque nemo explicabo hic harum quo omnis? Corrupti doloremque harum nihil! Quidem veniam porro quasi voluptatum ducimus sunt ratione molestias vero dignissimos!</p>
       </div>
-      <Button onClick={handleApplyButton} colorScheme='blue'>Apply Now</Button>
+      <Button onClick={handleApplyButton}>Apply Now</Button>
     </div>
   )
 }

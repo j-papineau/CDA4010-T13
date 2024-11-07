@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import PrevNextBtn from './PrevNextBtn';
 import ModalTitle from './ModalTitle';
-import { Select, Switch, Textarea } from '@chakra-ui/react';
+import { Select, Switch, TextField } from '@mui/material';
 
 type Props = {
   goNextPage: () => void;
@@ -35,7 +35,7 @@ const Military = (props: Props) => {
         </div>
         <div>
           <p className={`font-semibold text-lg ${!didServe ? "text-slate-500" : "text-black"}`}>What skills has your service given you?</p>
-          <Textarea disabled={!didServe} 
+          <TextField disabled={!didServe} 
           rows={8}
           value={textInput} 
           onChange={(e) => setTextInput(e.target.value)} />

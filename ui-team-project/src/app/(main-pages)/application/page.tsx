@@ -118,12 +118,12 @@ const Application = (props: Props) => {
 
   const modalPages = [
     <PersonalInfo setAlertInfo={setAlertInfo} goNextPage={goNextPage}/>,
-    // <Military goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
-    // <JobReqs goNext={goNextPage} goPrev={goPrevPage}/>,
-    // <Education goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
-    // <WorkExp goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
-    // <Skills goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
-    // <TC goNextPage={goNextPage} goPrevPage={goPrevPage}/>
+    <Military goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <JobReqs goNext={goNextPage} goPrev={goPrevPage}/>,
+    <Education goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <WorkExp goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <Skills goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <TC goNextPage={goNextPage} goPrevPage={goPrevPage}/>
   ]
 
   return (

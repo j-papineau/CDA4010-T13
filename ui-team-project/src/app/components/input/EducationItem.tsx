@@ -1,4 +1,4 @@
-import { Checkbox, Input } from '@chakra-ui/react'
+import { Checkbox, Input } from '@mui/material'
 import React from 'react'
 
 type Props = {

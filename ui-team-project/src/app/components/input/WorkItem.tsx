@@ -1,4 +1,4 @@
-import { Input, Textarea } from '@chakra-ui/react'
+import { Input, TextField } from '@mui/material'
 import React from 'react'
 
 type Props = {}
@@ -28,7 +28,7 @@ const WorkItem = (props: Props) => {
         </div>
         <div className='flex flex-col'>
             <p>Roles and Responsibilities</p>
-            <Textarea rows={4} />
+            <TextField rows={4} />
         </div>
     </div>
   )

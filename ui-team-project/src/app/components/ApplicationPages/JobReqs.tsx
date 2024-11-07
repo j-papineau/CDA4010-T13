@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ModalTitle from './ModalTitle'
 import PrevNextBtn from './PrevNextBtn'
 import Availability from '../input/Availability';
-import { Switch } from '@chakra-ui/react';
+import { Switch } from '@mui/material';
 
 type Props = {
     goNext: () => void;

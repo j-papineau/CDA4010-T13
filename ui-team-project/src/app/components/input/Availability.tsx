@@ -1,4 +1,5 @@
-import { Button, Select, Switch } from '@chakra-ui/react'
+
+import { Button, Select, Switch } from '@mui/material'
 import React, {useState} from 'react'
 
 type Props = {}
@@ -13,7 +14,7 @@ const Availability = (props: Props) => {
         <p className='font-semibold text-lg'>Availability</p>
         <div className='flex flex-row space-x-4'>
             <p className=''>Open Availability</p>
-            <Switch size={"lg"} checked={openAvail} onChange={() => setOpenAvail(!openAvail)} />
+            <Switch checked={openAvail} onChange={() => setOpenAvail(!openAvail)} />
         </div>
         <div className='flex flex-row'>
             <div className='flex flex-col'>
