@@ -1,11 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
-import { Button, MenuButton} from '@chakra-ui/react'
 
 
-type Props = {}
-
-const NavBar = (props: Props) => {
+const NavBar = () => {
   return (
     <div className='flex flex-row justify-between py-4 bg-blue-950 text-white items-center px-10'>
         <div className='flex flex-row space-x-2 items-center'>
