@@ -2,8 +2,8 @@
 
 export interface WorkXP {
     company: string;
-    start: Date;
-    end: Date;
+    start: string;
+    end: string;
     position: string;
     duties: string;
   }

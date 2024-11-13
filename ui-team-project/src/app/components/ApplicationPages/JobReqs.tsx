@@ -8,7 +8,7 @@ import * as types from "@/app/util/types"
 type Props = {
     goNext: () => void;
     goPrev: () => void;
-    changeMasterState: (attribute: string, value: types.MilitaryService | types.JobReqs | types.PersonalInfo | types.Education[] | types.WorkXP[] | types.Skill | boolean) => void;
+    changeMasterState: (attribute: string, value: types.MilitaryService | types.JobReqs | types.PersonalInfo | types.Education[] | types.WorkXP[] | types.Skill[] | boolean) => void;
     masterData: types.MasterData
 }
 

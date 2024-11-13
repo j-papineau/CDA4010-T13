@@ -1,5 +1,6 @@
 "use client"
 import Education from '@/app/components/ApplicationPages/Education'
+import Final from '@/app/components/ApplicationPages/Final'
 import JobReqs from '@/app/components/ApplicationPages/JobReqs'
 import Military from '@/app/components/ApplicationPages/Military'
 import PersonalInfo from '@/app/components/ApplicationPages/PersonalInfo'
@@ -8,6 +9,7 @@ import TC from '@/app/components/ApplicationPages/TC'
 import WorkExp from '@/app/components/ApplicationPages/WorkExp'
 import AppHeader from '@/app/components/Header/AppHeader'
 import * as types from '@/app/util/types';
+import { LinearProgress } from '@mui/material'
 import React, { useState } from 'react'
 
 
@@ -62,8 +64,8 @@ const blankData: types.MasterData = {
   work: [ 
     {
       company: "",
-      start: new Date(),
-      end: new Date(),
+      start: "",
+      end: "",
       position: "",
       duties: ""
     }
@@ -99,7 +101,8 @@ const Application = (props: Props) => {
     3: 50,
     4: 65,
     5: 75,
-    6: 90
+    6: 90,
+    7: 99,
   }
 
   const goNextPage = () => {
@@ -116,7 +119,12 @@ const Application = (props: Props) => {
     }
   }
 
-  const changeMasterState = (attribute: string, value: types.MilitaryService | types.PersonalInfo| types.JobReqs | types.Education[] | types.WorkXP[] | types.Skill | boolean) => {
+  const goFirst = () => {
+    setCurrentPage(0)
+    setProgress(1);
+  }
+
+  const changeMasterState = (attribute: string, value: types.MilitaryService | types.PersonalInfo| types.JobReqs | types.Education[] | types.WorkXP[] | types.Skill[] | boolean) => {
     setAppData(prev => ({
       ...prev,
       [attribute]: value
@@ -127,10 +135,12 @@ const Application = (props: Props) => {
     <PersonalInfo masterData={appData} changeMasterState={changeMasterState} setAlertInfo={setAlertInfo} goNextPage={goNextPage}/>,
     <Military masterData={appData} changeMasterState={changeMasterState} goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
     <JobReqs masterData={appData} changeMasterState={changeMasterState} goNext={goNextPage} goPrev={goPrevPage}/>,
-    <Education goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
-    <WorkExp goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
-    <Skills goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
-    <TC goNextPage={goNextPage} goPrevPage={goPrevPage}/>
+    <Education changeMasterState={changeMasterState} masterData={appData} goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <WorkExp changeMasterState={changeMasterState} masterData={appData} goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <Skills changeMasterState={changeMasterState} masterData={appData} goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <TC changeMasterState={changeMasterState} masterData={appData} goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <Final masterData={appData} goFirst={goFirst}/>
+
   ]
 
   return (
@@ -138,6 +148,7 @@ const Application = (props: Props) => {
       <AppHeader/>
       <div className='flex flex-col w-full items-center'>
         {/* <Progress backgroundColor={"blue.100"} colorScheme='blue' value={progress} className='w-[75%]'/> */}
+        <LinearProgress className='w-[75%]' color='primary' variant='determinate' value={progress}/>
         <p>{progress}% Done</p>
       </div>
       {/* main modal */}

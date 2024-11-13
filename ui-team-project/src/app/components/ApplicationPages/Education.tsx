@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PrevNextBtn from './PrevNextBtn';
 import ModalTitle from './ModalTitle';
 import EducationItem from '../input/EducationItem';
 import { Button } from '@mui/material';
 import { FaPlus } from 'react-icons/fa';
-import { Education as EducationType } from '@/app/util/types';
+import * as types from '@/app/util/types'
 
 type Props = {
   goNextPage: () => void;
   goPrevPage: () => void;
+  changeMasterState: (attribute: string, value: types.MilitaryService | types.JobReqs | types.PersonalInfo | types.Education[] | types.WorkXP[] | types.Skill[] | boolean) => void;
+  masterData: types.MasterData
 }
 
 
 const Education = (props: Props) => {
 
-  var blankItem: EducationType = {
+  var blankItem: types.Education = {
     name: "",
     degree: "",
     major: "",
@@ -22,24 +24,49 @@ const Education = (props: Props) => {
     completed: false,
   }
 
-  const [items, setItems] = useState<EducationType[]>([blankItem])
+  const [items, setItems] = useState<types.Education[]>([blankItem])
   const [pDisabled, setPDisabled] = useState(false);
   const [nDisabled, setNDisabled] = useState(false);
 
   const onNext = () => {
-    props.goNextPage();
+    // console.log(items);
+    props.changeMasterState("education", items);
+    props.goNextPage()
+    // props.goNextPage();
   }
 
   const onPrev = () => {
     props.goPrevPage();
   }
 
-  const addNewItem = () => {
 
+
+  useEffect(() => {
+    setItems(props.masterData.education)
+  }, [props.masterData])
+
+  const updateItemString = (index: number, attribute: "name" | "degree" | "major" | "graduation", newVal: string) => {
+    setItems((prev) => {
+      const updatedItems = [...prev];
+      const itemToUpdate = updatedItems[index];
+      if(itemToUpdate){
+        itemToUpdate[attribute] = newVal;
+      }
+
+      return updatedItems
+    })
   }
 
-  const updateItem = (index: number, attribute: string, newVal: string | boolean) => {
+  const updateItemBool = (index: number, attribute: "completed", newVal: boolean) => {
+    setItems((prev) => {
+      const updatedItems = [...prev];
+      const itemToUpdate = updatedItems[index];
+      if(itemToUpdate){
+        itemToUpdate[attribute] = newVal;
+      }
 
+      return updatedItems
+    })
   }
 
   const addItem = () => {
@@ -55,7 +82,7 @@ const Education = (props: Props) => {
         <ModalTitle title='Your Education'/>
         {items.map((item, key) => (
           <div key={key}>
-            <EducationItem updateFunc={updateItem}/>
+            <EducationItem data={item} index={key} updateItemString={updateItemString} updateItemBool={updateItemBool}/>
           </div>
         ))}
         <Button onClick={addItem}>

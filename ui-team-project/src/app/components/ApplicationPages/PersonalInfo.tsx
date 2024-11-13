@@ -13,7 +13,7 @@ import toast from 'react-hot-toast';
 type Props = {
     setAlertInfo: (info: AlertInfo) => void;
     goNextPage: () => void;
-    changeMasterState: (attribute: string, value: types.MilitaryService | types.PersonalInfo | types.Education[] | types.WorkXP[] | types.Skill | boolean) => void;
+    changeMasterState: (attribute: string, value: types.MilitaryService | types.PersonalInfo | types.Education[] | types.WorkXP[] | types.Skill[] | boolean) => void;
     masterData: types.MasterData
 }
 

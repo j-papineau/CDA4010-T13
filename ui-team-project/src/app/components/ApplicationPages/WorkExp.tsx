@@ -1,20 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PrevNextBtn from './PrevNextBtn';
 import ModalTitle from './ModalTitle';
 import WorkItem from '../input/WorkItem';
 import { Button } from '@mui/material';
 import { FaPlus } from 'react-icons/fa';
 import { WorkXP } from '@/app/util/types';
+import * as types from '@/app/util/types'
 
 type Props = {
   goNextPage: () => void;
   goPrevPage: () => void;
+  changeMasterState: (attribute: string, value: types.MilitaryService | types.JobReqs | types.PersonalInfo | types.Education[] | types.WorkXP[] | types.Skill[] | boolean) => void;
+  masterData: types.MasterData
 }
 
 const blankItem: WorkXP = {
   company: "",
-  start: new Date(),
-  end: new Date(),
+  start: "",
+  end: "",
   position: "",
   duties: ""
 }
@@ -30,6 +33,7 @@ const WorkExp = (props: Props) => {
   const [nDisabled, setNDisabled] = useState(false);
 
   const onNext = () => {
+    props.changeMasterState("work", items);
     props.goNextPage();
   }
 
@@ -37,7 +41,23 @@ const WorkExp = (props: Props) => {
     props.goPrevPage();
   }
 
-  const updateItem = (index: number, attribute: string, newVal: string) => {
+  useEffect(() => {
+    setItems(props.masterData.work);
+  }, [props.masterData])
+
+  const updateItem = (index: number, attribute: "company" | "position" | "duties" | "start" | "end", newVal: string) => {
+    setItems((prev) => {
+      const updatedItems = [...prev];
+      const itemToUpdate = updatedItems[index];
+      if(itemToUpdate){
+        itemToUpdate[attribute] = newVal;
+      }
+
+      return updatedItems
+    })
+  }
+
+  const updateItemDate = (index: number, attribute: "start" | "end", newVal: Date) => {
 
   }
 
@@ -53,7 +73,7 @@ const WorkExp = (props: Props) => {
       </div>
       {items.map((item, key) => (
         <div key={key}>
-          <WorkItem />
+          <WorkItem data={item} updateItem={updateItem} updateItemDate={updateItemDate} index={key} />
         </div>
       ))}
       <Button onClick={addItem}>
