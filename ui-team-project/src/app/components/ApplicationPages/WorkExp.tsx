@@ -4,29 +4,26 @@ import ModalTitle from './ModalTitle';
 import WorkItem from '../input/WorkItem';
 import { Button } from '@mui/material';
 import { FaPlus } from 'react-icons/fa';
+import { WorkXP } from '@/app/util/types';
 
 type Props = {
   goNextPage: () => void;
   goPrevPage: () => void;
 }
 
-export interface WorkXP {
-  company: string;
-  start: Date;
-  end: Date;
-  position: string;
-  duties: string;
+const blankItem: WorkXP = {
+  company: "",
+  start: new Date(),
+  end: new Date(),
+  position: "",
+  duties: ""
 }
+
+
 
 const WorkExp = (props: Props) => {
 
-  var blankItem: WorkXP = {
-      company: "",
-      start: new Date(),
-      end: new Date(),
-      position: "",
-      duties: ""
-  }
+
 
   const [items, setItems] = useState<WorkXP[]>([blankItem])
   const [pDisabled, setPDisabled] = useState(false);

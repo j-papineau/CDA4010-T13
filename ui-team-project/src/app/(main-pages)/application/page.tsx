@@ -7,7 +7,7 @@ import Skills from '@/app/components/ApplicationPages/Skills'
 import TC from '@/app/components/ApplicationPages/TC'
 import WorkExp from '@/app/components/ApplicationPages/WorkExp'
 import AppHeader from '@/app/components/Header/AppHeader'
-import { MasterData } from '@/app/util/types'
+import * as types from '@/app/util/types';
 import React, { useState } from 'react'
 
 
@@ -20,7 +20,7 @@ export interface AlertInfo {
   status: "success" | "error" | "warning";
 }
 
-const blankData: MasterData = {
+const blankData: types.MasterData = {
   personalInfo: {
     name: {
       title: "",
@@ -81,7 +81,7 @@ const blankData: MasterData = {
 
 const Application = (props: Props) => {
 
-  const [appData, setAppData] = useState<MasterData>(blankData);
+  const [appData, setAppData] = useState<types.MasterData>(blankData);
   const [progress, setProgress] = useState(1);
   //page array counted 0 - ...
   const [currentPage, setCurrentPage] = useState(0);
@@ -116,10 +116,17 @@ const Application = (props: Props) => {
     }
   }
 
+  const changeMasterState = (attribute: string, value: types.MilitaryService | types.PersonalInfo| types.JobReqs | types.Education[] | types.WorkXP[] | types.Skill | boolean) => {
+    setAppData(prev => ({
+      ...prev,
+      [attribute]: value
+    }))
+  }
+
   const modalPages = [
-    <PersonalInfo setAlertInfo={setAlertInfo} goNextPage={goNextPage}/>,
-    <Military goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
-    <JobReqs goNext={goNextPage} goPrev={goPrevPage}/>,
+    <PersonalInfo masterData={appData} changeMasterState={changeMasterState} setAlertInfo={setAlertInfo} goNextPage={goNextPage}/>,
+    <Military masterData={appData} changeMasterState={changeMasterState} goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
+    <JobReqs masterData={appData} changeMasterState={changeMasterState} goNext={goNextPage} goPrev={goPrevPage}/>,
     <Education goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
     <WorkExp goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
     <Skills goNextPage={goNextPage} goPrevPage={goPrevPage}/>,

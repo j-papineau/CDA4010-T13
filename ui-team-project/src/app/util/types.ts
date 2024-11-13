@@ -1,6 +1,12 @@
-import { Education } from "../components/ApplicationPages/Education";
-import { WorkXP } from "../components/ApplicationPages/WorkExp";
 
+
+export interface WorkXP {
+    company: string;
+    start: Date;
+    end: Date;
+    position: string;
+    duties: string;
+  }
 
 export interface MasterData {
     personalInfo: PersonalInfo;
@@ -52,3 +58,11 @@ export interface Skill {
     name: string;
     level: string;
 }
+
+export interface Education {
+    name: string;
+    degree: string;
+    major: string;
+    graduation: string;
+    completed: boolean;
+  }

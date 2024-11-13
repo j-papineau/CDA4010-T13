@@ -1,12 +1,15 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PrevNextBtn from './PrevNextBtn';
 import ModalTitle from './ModalTitle';
-import { Select, Switch, TextField } from '@mui/material';
+import { Select, Switch, TextareaAutosize, TextField } from '@mui/material';
+import * as types from "@/app/util/types"
 
 type Props = {
   goNextPage: () => void;
   goPrevPage: () => void;
+  changeMasterState: (attribute: string, value: types.MilitaryService | types.PersonalInfo | types.Education[] | types.WorkXP[] | types.Skill | boolean) => void;
+  masterData: types.MasterData
 }
 
 const Military = (props: Props) => {
@@ -16,7 +19,13 @@ const Military = (props: Props) => {
   const [didServe, setDidServe] = useState(false);
   const [textInput, setTextInput] = useState("");
 
+  useEffect(() => {
+    setDidServe(props.masterData.militaryInfo.didServe);
+    setTextInput(props.masterData.militaryInfo.info);
+  }, [props.masterData])
+
   const onNext = () => {
+    props.changeMasterState("militaryInfo", {didServe: didServe, info: textInput})
     props.goNextPage();
   }
 
@@ -35,8 +44,9 @@ const Military = (props: Props) => {
         </div>
         <div>
           <p className={`font-semibold text-lg ${!didServe ? "text-slate-500" : "text-black"}`}>What skills has your service given you?</p>
-          <TextField disabled={!didServe} 
-          rows={8}
+          <TextareaAutosize disabled={!didServe} 
+          className="w-80 text-sm font-normal font-sans leading-normal rounded-md p-3 rounded-br-none shadow-lg shadow-slate-100  focus-visible:outline-0 box-border"
+          minRows={8}
           value={textInput} 
           onChange={(e) => setTextInput(e.target.value)} />
         </div>

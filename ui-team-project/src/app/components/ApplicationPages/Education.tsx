@@ -4,23 +4,17 @@ import ModalTitle from './ModalTitle';
 import EducationItem from '../input/EducationItem';
 import { Button } from '@mui/material';
 import { FaPlus } from 'react-icons/fa';
+import { Education as EducationType } from '@/app/util/types';
 
 type Props = {
   goNextPage: () => void;
   goPrevPage: () => void;
 }
 
-export interface Education {
-  name: string;
-  degree: string;
-  major: string;
-  graduation: string;
-  completed: boolean;
-}
 
 const Education = (props: Props) => {
 
-  var blankItem: Education = {
+  var blankItem: EducationType = {
     name: "",
     degree: "",
     major: "",
@@ -28,7 +22,7 @@ const Education = (props: Props) => {
     completed: false,
   }
 
-  const [items, setItems] = useState<Education[]>([blankItem])
+  const [items, setItems] = useState<EducationType[]>([blankItem])
   const [pDisabled, setPDisabled] = useState(false);
   const [nDisabled, setNDisabled] = useState(false);
 
