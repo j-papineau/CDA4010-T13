@@ -18,7 +18,7 @@ const Availability = (props: Props) => {
   return (
     <div className='flex flex-col'>
         <p className='font-semibold text-lg'>Availability</p>
-        <div className='flex flex-row space-x-4'>
+        <div className='flex flex-row space-x-4 items-center'>
             <p className=''>Open Availability</p>
             <Switch checked={openAvail} onChange={() => {
                 setOpenAvail(!openAvail)

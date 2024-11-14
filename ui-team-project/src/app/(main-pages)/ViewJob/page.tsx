@@ -40,7 +40,7 @@ const ViewJob = (props: Props) => {
         Fugiat commodi eum facilis! Minus, dolorum aliquid natus mollitia quam blanditiis veniam ex ipsam voluptatum doloribus soluta. Eum illum iure pariatur. Accusantium illo dolorum nam vero voluptatem id porro doloremque.
         Architecto incidunt laudantium mollitia, blanditiis possimus porro, perferendis, eaque nemo explicabo hic harum quo omnis? Corrupti doloremque harum nihil! Quidem veniam porro quasi voluptatum ducimus sunt ratione molestias vero dignissimos!</p>
       </div>
-      <Button onClick={handleApplyButton}>Apply Now</Button>
+      <Button variant='contained' color='primary' onClick={handleApplyButton}>Apply Now</Button>
     </div>
   )
 }

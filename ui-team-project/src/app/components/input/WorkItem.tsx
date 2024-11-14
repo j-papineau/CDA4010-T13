@@ -1,6 +1,5 @@
 import { WorkXP } from '@/app/util/types';
 import { Divider, Input, TextField } from '@mui/material'
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import React from 'react'
 
 type Props = {
@@ -20,10 +19,10 @@ const WorkItem = (props: Props) => {
             </div>
             <div className='grid grid-cols-2'>
                 <div className='flex flex-col'>
-                    <p>Start Year</p>
+                    <p>Start Month / Year</p>
                     <Input value={props.data.start} onChange={(e) => props.updateItem(props.index, "start", e.target.value)} placeholder="2024" />                </div>
                 <div className='flex flex-col'>
-                    <p>End Year</p>
+                    <p>End Month / Year</p>
                     <Input value={props.data.end} onChange={(e) => props.updateItem(props.index, "end", e.target.value)} placeholder="2024" />
                 </div>
             </div>

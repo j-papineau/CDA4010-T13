@@ -32,6 +32,19 @@ const JobReqs = (props: Props) => {
     }, [props.masterData])
 
     const onNext = () => {
+       
+      let filtered  = tempData.availability.filter(item => {
+        return item != "none" && item != ""
+      })
+
+      if(filtered.length == 0) {
+        let ans = confirm("Are you sure you would like to put 'no availability'?")
+        if(!ans){
+          return;
+        }
+      }
+
+
         props.changeMasterState("jobReqs", tempData)
         props.goNext();
     }
@@ -130,6 +143,11 @@ const JobReqs = (props: Props) => {
             }))
           }}/>
         </div>
+        {/* 
+        TODO:
+        Possibly mult select for availability
+        Salary requirement, start date*, full or part time
+        */}
       </div>
 
       <PrevNextBtn goNext={onNext} goPrev={onPrev} prevDisabled={pDisabled} nextDisabled={nDisabled}/>

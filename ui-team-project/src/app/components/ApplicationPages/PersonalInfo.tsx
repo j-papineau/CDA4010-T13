@@ -43,11 +43,35 @@ const PersonalInfo = (props: Props) => {
     }
 
     const goNext = () => {
-        //validate info
-        if(tempPersonal.name.first.length == 0){
-            toast.error("Please enter your first name");
+        if(!tempPersonal.name.first.match("[a-zA-Z]") || tempPersonal.name.first.length == 0){
+            toast.error("Please enter a valid first name.");
             return;
         }
+        if(!tempPersonal.name.last.match("[a-zA-Z]") || tempPersonal.name.last.length == 0){
+            toast.error("Please enter a valid last name.");
+            return;
+        }
+        if(tempPersonal.address.address.length == 0){
+            toast.error("Please enter a valid street address.");
+            return;
+        }
+        if(!tempPersonal.address.city.match("[a-zA-Z]") || tempPersonal.address.city.length == 0){
+            toast.error("Please enter a valid city name");
+            return;
+        }
+        if(tempPersonal.address.zip.length != 5 || !tempPersonal.address.zip.match("[0-9]")){
+            toast.error("Please enter a valid zip code");
+            return;
+        }
+        if(!tempPersonal.email.match("^[^@]+@[^@]+\.[^@]+$") || tempPersonal.email.length == 0){
+            toast.error("Please enter a valid email address");
+            return;
+        }
+        if(!tempPersonal.phoneMobile.match('^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$') || tempPersonal.phoneMobile.length == 0){
+            toast.error("Please enter a valid mobile phone number");
+            return;
+        }
+
         props.changeMasterState("personalInfo", tempPersonal);
         props.goNextPage()
     }
@@ -77,17 +101,19 @@ const PersonalInfo = (props: Props) => {
             <p className='font-semibold text-lg'>Name</p>
             <div className='flex flex-row justify-between space-x-4'>
                 <div className='flex flex-col items-center'>
-                    <Input placeholder='Don' value={tempPersonal.name.title}
-                    onChange={(e) => {
-                        setTempPersonal(prev => ({
-                            ...prev,
-                            name: {
-                                ...prev.name,
-                                title: e.target.value
-                            }
-                        }))
-                    }}/>
-                    <p className='text-xs'>Title</p>
+                    <div className='w-[50px]'>
+                        <Input placeholder='Don' value={tempPersonal.name.title}
+                        onChange={(e) => {
+                            setTempPersonal(prev => ({
+                                ...prev,
+                                name: {
+                                    ...prev.name,
+                                    title: e.target.value
+                                }
+                            }))
+                        }}/>
+                        <p className='text-xs'>Title</p>
+                    </div>
                 </div>
                 <div className='flex flex-col items-center'>
                     <Input placeholder='Tony' value={tempPersonal.name.first}
@@ -100,20 +126,22 @@ const PersonalInfo = (props: Props) => {
                             }
                         }))
                     }} />
-                    <p className='text-xs'>First</p>
+                    <p className='text-xs'>First*</p>
                 </div>
                 <div className='flex flex-col items-center'>
-                    <Input placeholder='J' value={tempPersonal.name.mi}
-                    onChange={(e) => {
-                        setTempPersonal(prev => ({
-                            ...prev,
-                            name: {
-                                ...prev.name,
-                                mi: e.target.value
-                            }
-                        }))
-                    }}/>
-                    <p className='text-xs'>M.I.</p>
+                    <div className='w-[100px]'>
+                        <Input placeholder='J' value={tempPersonal.name.mi}
+                        onChange={(e) => {
+                            setTempPersonal(prev => ({
+                                ...prev,
+                                name: {
+                                    ...prev.name,
+                                    mi: e.target.value
+                                }
+                            }))
+                        }}/>
+                        <p className='text-xs'>M.I.</p>
+                    </div>
                 </div>
                 <div className='flex flex-col items-center'>
                     <Input placeholder='Soprano' value={tempPersonal.name.last}
@@ -126,7 +154,7 @@ const PersonalInfo = (props: Props) => {
                             }
                         }))
                     }}/>
-                    <p className='text-xs'>Last</p>
+                    <p className='text-xs'>Last*</p>
                 </div>
             </div>
             <p className='font-semibold text-lg'>Home Residence</p>
@@ -142,7 +170,7 @@ const PersonalInfo = (props: Props) => {
                             }
                         }))
                     }}/>
-                    <p className='text-xs'>Street Address</p>
+                    <p className='text-xs'>Street Address*</p>
                 </div>
                 <div className='flex flex-col items-center'>
                     <Input placeholder='Newark' value={tempPersonal.address.city}
@@ -155,7 +183,7 @@ const PersonalInfo = (props: Props) => {
                             }
                         }))
                     }}/>
-                    <p className='text-xs'>City</p>
+                    <p className='text-xs'>City*</p>
                 </div>
                 <div className='flex flex-col items-center'>
                     <Input placeholder='33211' type='numeric' value={tempPersonal.address.zip}
@@ -168,16 +196,16 @@ const PersonalInfo = (props: Props) => {
                             }
                         }))
                     }}/>
-                    <p className='text-xs'>ZIP</p>
+                    <p className='text-xs'>5 digit zip code*</p>
                 </div>
                 <div className='flex flex-col items-center'>
                     {/* <Select>
                         <option value='NJ'>New Jersey</option>
                     </Select> */}
-                    <p className='text-xs'>State</p>
+                    <p className='text-xs'>State*</p>
                 </div>
             </div>
-            <p className='font-semibold text-lg'>Email</p>
+            <p className='font-semibold text-lg'>Email*</p>
             <Input type='email' placeholder='tony@sopranowastemanagement.com' value={tempPersonal.email}
             onChange={(e) => {
                 setTempPersonal(prev => ({
@@ -187,7 +215,7 @@ const PersonalInfo = (props: Props) => {
             }}/>
             <div className='flex flex-row space-x-4'>
                 <div className='flex flex-col'>
-                    <p className='font-semibold text-lg'>Phone Number (Mobile)</p>
+                    <p className='font-semibold text-lg'>Phone Number (Mobile)*</p>
                     <Input type='tel' placeholder='(123) 123-1234' value={tempPersonal.phoneMobile}
                     onChange={(e) => {
                         setTempPersonal(prev => ({
@@ -197,7 +225,7 @@ const PersonalInfo = (props: Props) => {
                     }}/>
                 </div>
                 <div className='flex flex-col'>
-                    <p className='font-semibold text-lg'>Phone Number (Home)</p>
+                    <p className='font-semibold text-lg'>Phone Number (Alternate)</p>
                     <Input type='tel' placeholder='(123) 123-1234' value={tempPersonal.phoneHome}
                     onChange={(e) => {
                         setTempPersonal(prev => ({

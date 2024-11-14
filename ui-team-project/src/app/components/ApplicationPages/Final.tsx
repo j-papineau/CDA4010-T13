@@ -14,7 +14,7 @@ const Final = (props: Props) => {
 
     const onFinish = () => {
         // //redir to thank you page
-        // router.push("/thankyou")
+        router.push("/thankyou")
     }
 
     const onBack = () => {
@@ -28,12 +28,24 @@ const Final = (props: Props) => {
     <div className='flex flex-col space-y-2'>
       <ModalTitle title='Does this look right?'/>
     </div>
-    <div>
-        <p>Overview of entered data will be here</p>
+    <div className='flex flex-col space-y-2'>
+        <div className='flex flex-col space-x-2 items-center'>
+          <p className='font-semibold text-xl'>Name</p>
+          <p>{props.masterData.personalInfo.name.title} {props.masterData.personalInfo.name.first} {props.masterData.personalInfo.name.mi} {props.masterData.personalInfo.name.last}</p>
+        </div>
+        <div className="flex flex-col space-x-2 items-center">
+          <p className='font-semibold text-xl'>Email</p>
+          <p >{props.masterData.personalInfo.email}</p>
+        </div>
+        <div className="flex flex-col space-x-2 items-center">
+          <p className='font-semibold'>Phone</p>
+
+        </div>
+
     </div>
     <div className='flex flex-row w-full justify-between'>
         <Button variant='contained' onClick={onBack}>Go Back</Button>
-        <Button variant='contained' color='success'>Finish My Application</Button>
+        <Button variant='contained' onClick={onFinish} color='success'>Finish My Application</Button>
     </div>
   </div>
   )

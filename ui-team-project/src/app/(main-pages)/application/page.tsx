@@ -124,7 +124,7 @@ const Application = (props: Props) => {
     setProgress(1);
   }
 
-  const changeMasterState = (attribute: string, value: types.MilitaryService | types.PersonalInfo| types.JobReqs | types.Education[] | types.WorkXP[] | types.Skill[] | boolean) => {
+  const changeMasterState = (attribute: string, value: types.MilitaryService | types.PersonalInfo | types.JobReqs | types.Education[] | types.WorkXP[] | types.Skill[] | boolean) => {
     setAppData(prev => ({
       ...prev,
       [attribute]: value
@@ -140,7 +140,6 @@ const Application = (props: Props) => {
     <Skills changeMasterState={changeMasterState} masterData={appData} goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
     <TC changeMasterState={changeMasterState} masterData={appData} goNextPage={goNextPage} goPrevPage={goPrevPage}/>,
     <Final masterData={appData} goFirst={goFirst}/>
-
   ]
 
   return (

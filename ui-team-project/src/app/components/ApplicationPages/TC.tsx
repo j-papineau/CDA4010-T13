@@ -49,7 +49,10 @@ const TC = (props: Props) => {
         <Checkbox checked={accepted} onClick={(e) => setAccepted(!accepted)} />
         <p>I agree to these terms and conditions</p>
       </div>
-      <Button onClick={onNext} variant='contained'>Finish Application</Button>
+      <div className='flex flex-row justify-between p-10 w-full'>
+        <Button onClick={onPrev} variant='contained' color='error'>Go Back</Button>
+        <Button onClick={onNext} variant='contained' color='success'>Finish Application</Button>
+      </div>
     </div>
   )
 }
