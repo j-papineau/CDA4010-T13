@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ModalTitle from './ModalTitle'
 import PrevNextBtn from './PrevNextBtn'
 import Availability from '../input/Availability';
-import { Switch } from '@mui/material';
+import { Input, MenuItem, Select, Switch } from '@mui/material';
 import * as types from "@/app/util/types"
 
 type Props = {
@@ -18,7 +18,10 @@ const empty: types.JobReqs = {
   license: false,
   liftTwenty: false,
   trafficIncident: false,
-  dui: false
+  dui: false,
+  employmentType: "Part Time",
+  salaryReq: "0",
+  startDate: "10/27/2000"
 }
 
 const JobReqs = (props: Props) => {
@@ -142,12 +145,33 @@ const JobReqs = (props: Props) => {
               dui: !prev.dui
             }))
           }}/>
+          <p className="text-lg col-span-2">Employment Type</p>
+          <Select value={tempData.employmentType} onChange={(e) => {
+            setTempData(prev => ({
+              ...prev,
+              employmentType: e.target.value as string
+            }))
+          }}>
+            <MenuItem value="Full Time">Full Time</MenuItem>
+            <MenuItem value="Part Time">Part Time</MenuItem>
+            <MenuItem value="Any">Any</MenuItem>
+          </Select>
+          <p className="text-lg col-span-2">Salary Requirement</p>
+          <Input value={tempData.salaryReq} onChange={(e) => {
+            setTempData(prev => ({
+              ...prev,
+              salaryReq: e.target.value
+            }))
+          }}/>
+          <p className="text-lg col-span-2">Available Start Date</p>
+          <Input type='date'/>
         </div>
         {/* 
         TODO:
         Possibly mult select for availability
         Salary requirement, start date*, full or part time
         */}
+
       </div>
 
       <PrevNextBtn goNext={onNext} goPrev={onPrev} prevDisabled={pDisabled} nextDisabled={nDisabled}/>

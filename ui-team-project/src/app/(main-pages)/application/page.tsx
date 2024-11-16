@@ -51,6 +51,9 @@ const blankData: types.MasterData = {
     liftTwenty: false,
     trafficIncident: false,
     dui: false,
+    employmentType: "Part Time",
+    salaryReq: "0",
+    startDate: "10/27/2000"
   },
   education: [
     {

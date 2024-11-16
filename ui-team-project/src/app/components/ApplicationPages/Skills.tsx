@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PrevNextBtn from './PrevNextBtn';
 import ModalTitle from './ModalTitle';
 import * as types from "@/app/util/types"
-import { Button, Input } from '@mui/material';
+import { Button, Input, MenuItem, Select } from '@mui/material';
 import { FaPlus } from 'react-icons/fa';
 
 type Props = {
@@ -69,9 +69,15 @@ const Skills = (props: Props) => {
             <p>Skill</p>
             <Input value={item.name} onChange={(e) => updateItem(key, "name", e.target.value)} placeholder='React Development'/>
           </div>
-          <div className='flex flex-col'>
+          <div className='flex flex-col w-[200px]'>
             <p>Proficiency</p>
-            <Input value={item.level} onChange={(e) => updateItem(key, "level", e.target.value)} placeholder='Expert'/>
+            <Select value={item.level} size='small' onChange={(e) => {
+              updateItem(key, "level", e.target.value as string);
+            }}>
+              <MenuItem value="Proficient">Proficient</MenuItem>
+              <MenuItem value="Intermediate">Intermediate</MenuItem>
+              <MenuItem value="Beginner">Beginner</MenuItem>
+            </Select>
           </div>
         </div>
       ))}

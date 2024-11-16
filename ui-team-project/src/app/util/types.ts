@@ -52,6 +52,9 @@ export interface JobReqs {
     liftTwenty: boolean;
     trafficIncident: boolean;
     dui: boolean; 
+    employmentType: string;
+    salaryReq: string;
+    startDate: string;
 }
 
 export interface Skill {
